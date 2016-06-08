@@ -1,0 +1,68 @@
+<div class="page-header">
+  <h1>Display</h1>
+</div>
+
+<dl class="dl-horizontal">
+
+  <dt>Map</dt>
+  <dd>
+    <!-- Code for Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+      var map;
+      function initialize() {
+
+        var myLatlng = new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>);
+
+        var mapOptions = {
+          zoom: 12,
+          center: myLatlng
+        };
+
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+          mapOptions);
+
+      <%  @sculptures.each do |sculpture|   %>
+        <%  if sculpture.city != @city  %>
+        <%  else %>
+        var infowindow_<%= sculpture.id %> = new google.maps.InfoWindow({
+            content: "<b><%= sculpture.name %></b>"
+          });
+
+        var sculptlatlng = new google.maps.LatLng(<%= sculpture.lat %>, <%= sculpture.lng %>);
+
+        var marker_<%= sculpture.id %> = new google.maps.Marker({
+            position: sculptlatlng,
+            map: map,
+            title: "<%= sculpture.name %>",
+            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+          });
+
+            marker_<%= sculpture.id %>.addListener('click', function() {
+              infowindow_<%= sculpture.id %>.open(map, marker_<%= sculpture.id %>);
+          });
+          <% end %>
+      <% end %>
+
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+    <div id="map-canvas" style="width: 400px; height: 400px"></div>
+  </dd>
+  <%  @sculptures.each do |sculpture|   %>
+    <%  if sculpture.city != @city  %>
+    <%  else %>
+  <dd>
+    <%= sculpture.name %>
+  </dd>
+  <dd>
+    <%= sculpture.description %>
+  </dd>
+  <dd>
+    <%= sculpture.address %>
+  </dd>
+    <% end %>
+  <% end %>
+</dl>

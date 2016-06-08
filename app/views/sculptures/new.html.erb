@@ -1,0 +1,91 @@
+<!-- Validation failure messages -->
+<% if @sculpture.errors.any? %>
+  <% @sculpture.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Sculpture</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_sculpture" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <input type="text" id="description" name="description" placeholder="Description" class="form-control" value="<%= @sculpture.description %>">
+      </div>
+
+      <!-- Label and input for aggregate -->
+      <div class="form-group">
+        <label for="aggregate" class="control-label">
+          Aggregate
+        </label>
+
+        <input type="text" id="aggregate" name="aggregate" placeholder="Aggregate" class="form-control" value="<%= @sculpture.aggregate %>">
+      </div>
+
+      <!-- Label and input for name -->
+      <div class="form-group">
+        <label for="name" class="control-label">
+          Name
+        </label>
+
+        <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @sculpture.name %>">
+      </div>
+
+      <!-- Label and input for address -->
+      <div class="form-group">
+        <label for="address" class="control-label">
+          Street Address
+        </label>
+
+        <input type="text" id="address" name="address" placeholder="Address" class="form-control" value="<%= @sculpture.address %>">
+      </div>
+
+      <!-- Label and input for city -->
+      <div class="form-group">
+        <label for="city" class="control-label">
+          City
+        </label>
+
+        <input type="text" id="city" name="city" placeholder="City" class="form-control" value="<%= @sculpture.city %>">
+      </div>
+
+      <!-- Label and input for state -->
+      <div class="form-group">
+        <label for="state" class="control-label">
+          State
+        </label>
+
+        <input type="text" id="state" name="state" placeholder="State" class="form-control" value="<%= @sculpture.state %>">
+      </div>
+
+      <!-- Label and input for zipcode -->
+      <div class="form-group">
+        <label for="zipcode" class="control-label">
+          Zipcode
+        </label>
+
+        <input type="text" id="zipcode" name="zipcode" placeholder="Zipcode" class="form-control" value="<%= @sculpture.zipcode %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Sculpture
+      </button>
+      or
+      <a href="/sculptures">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="page-header">
+  <h3>Sculpture #<%= @sculpture.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Lng</dt>
+      <dd><%= @sculpture.lng %></dd>
+
+      <dt>Lat</dt>
+      <dd><%= @sculpture.lat %></dd>
+
+      <dt>City</dt>
+      <dd><%= @sculpture.city %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @sculpture.description %></dd>
+
+      <dt>Aggregate</dt>
+      <dd><%= @sculpture.aggregate %></dd>
+
+      <dt>Name</dt>
+      <dd><%= @sculpture.name %></dd>
+
+      <dt>Address</dt>
+      <dd><%= @sculpture.address %></dd>
+
+      <dt>State</dt>
+      <dd><%= @sculpture.state %></dd>
+
+      <dt>Zipcode</dt>
+      <dd><%= @sculpture.zipcode %></dd>
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/sculptures" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/sculptures/<%= @sculpture.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_sculpture/<%= @sculpture.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
