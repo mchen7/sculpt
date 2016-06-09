@@ -2,23 +2,17 @@
   <h3>Sculpture #<%= @sculpture.id %></h3>
 </div>
 
+<h4>Details</h4>
+
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-3">
+    <img src="<%= @sculpture.main_picture %>" alt="" />
+  </div>
+  <div class="col-md-3">
     <dl class="dl-horizontal">
-      <dt>Lng</dt>
-      <dd><%= @sculpture.lng %></dd>
-
-      <dt>Lat</dt>
-      <dd><%= @sculpture.lat %></dd>
-
-      <dt>City</dt>
-      <dd><%= @sculpture.city %></dd>
-
-      <dt>Description</dt>
-      <dd><%= @sculpture.description %></dd>
 
       <dt>Aggregate</dt>
-      <dd><%= @sculpture.aggregate %></dd>
+      <dd><%= @reviews.average(:rating) %></dd>
 
       <dt>Name</dt>
       <dd><%= @sculpture.name %></dd>
@@ -26,24 +20,58 @@
       <dt>Address</dt>
       <dd><%= @sculpture.address %></dd>
 
+      <dt>City</dt>
+      <dd><%= @sculpture.city %></dd>
+
       <dt>State</dt>
       <dd><%= @sculpture.state %></dd>
 
       <dt>Zipcode</dt>
       <dd><%= @sculpture.zipcode %></dd>
-
     </dl>
+  </div>
+  <div class="col-md-6">
+    <dl class="dl-horizontal">
+      <dt>Description</dt>
+      <dd class="break-word"><%= @sculpture.description %></dd>
+    </dl>
+  </div>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/sculptures" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/sculptures/<%= @sculpture.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_sculpture/<%= @sculpture.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
+  <div class="btn-group btn-group-justified">
+    <a href="/sculptures" class="btn btn-primary">
+      Back
+    </a>
+    <a href="/sculptures/<%= @sculpture.id %>/edit" class="btn btn-warning">
+      Edit
+    </a>
+    <a href="/delete_sculpture/<%= @sculpture.id %>" class="btn btn-danger" rel="nofollow">
+      Delete
+    </a>
+  </div>
+</div>
+
+<h4>Reviews</h4>
+
+<div class="row">
+  <div style="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>User</th>
+        <th>Image</th>
+        <th>Rating</th>
+        <th>Comment</th>
+      </tr>
+      <%  @reviews.each do |review|   %>
+      <%  if review.sculpture_id != @sculpture.id  %>
+      <%  else %>
+      <tr>
+        <td><%= review.user.username %></td>
+        <td><img src="<%= review.picture %>" alt="" /></td>
+        <td><%= review.rating %></td>
+        <td><%= review.comment %></td>
+      </tr>
+      <% end %>
+      <% end %>
+    </table>
   </div>
 </div>

@@ -19,21 +19,17 @@
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
       <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @review.user_id %>">
-      </div>
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
 
       <!-- Label and input for sculpture_id -->
       <div class="form-group">
+        <div>
+          <a href="/sculptures/new"> Add New Sculpture </a>
+        </div>
         <label for="sculpture_id" class="control-label">
-          Sculpture
+          Sculpture Drop-Down
         </label>
-
-        <input type="text" id="sculpture_id" name="sculpture_id" placeholder="Sculpture" class="form-control" value="<%= @review.sculpture_id %>">
+        <%= select_tag(:sculpture_id, options_from_collection_for_select(Sculpture.all, :id, :name, @review.sculpture_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for comment -->
@@ -48,7 +44,7 @@
       <!-- Label and input for rating -->
       <div class="form-group">
         <label for="rating" class="control-label">
-          Rating
+          Ratings (1-5 with 1 being lowest)
         </label>
 
         <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @review.rating %>">
@@ -57,7 +53,7 @@
       <!-- Label and input for picture -->
       <div class="form-group">
         <label for="picture" class="control-label">
-          Picture
+          Picture URL
         </label>
 
         <input type="text" id="picture" name="picture" placeholder="Picture" class="form-control" value="<%= @review.picture %>">

@@ -25,6 +25,7 @@ class SculpturesController < ApplicationController
 
   def show
     @sculpture = Sculpture.find(params[:id])
+    @reviews = Review.all
   end
 
   def new
@@ -41,6 +42,7 @@ class SculpturesController < ApplicationController
     @sculpture.city = params[:city]
     @sculpture.state = params[:state]
     @sculpture.zipcode = params[:zipcode]
+    @sculpture.main_picture = params[:main_picture]
 
     @street_address = @sculpture.address + "," + @sculpture.city + "," + @sculpture.state + "," + @sculpture.zipcode.to_s
 
@@ -72,6 +74,7 @@ class SculpturesController < ApplicationController
     @sculpture.city = params[:city]
     @sculpture.state = params[:state]
     @sculpture.zipcode = params[:zipcode]
+    @sculpture.main_picture = params[:main_picture]
 
     @street_address = @sculpture.address + "," + @sculpture.city + "," + @sculpture.state + "," + @sculpture.zipcode.to_s
 

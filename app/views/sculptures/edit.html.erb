@@ -27,15 +27,6 @@
         <input type="text" id="description" name="description" placeholder="Description" class="form-control" value="<%= @sculpture.description %>">
       </div>
 
-      <!-- Label and input for aggregate -->
-      <div class="form-group">
-        <label for="aggregate" class="control-label">
-          Aggregate
-        </label>
-
-        <input type="text" id="aggregate" name="aggregate" placeholder="Aggregate" class="form-control" value="<%= @sculpture.aggregate %>">
-      </div>
-
       <!-- Label and input for name -->
       <div class="form-group">
         <label for="name" class="control-label">
@@ -80,6 +71,16 @@
 
         <input type="text" id="zipcode" name="zipcode" placeholder="Zipcode" class="form-control" value="<%= @sculpture.zipcode %>">
       </div>
+
+
+      <div class="form-group">
+        <label for="main_picture" class="control-label">
+          Picture URL
+        </label>
+
+        <input type="text" id="main_picture" name="main_picture" placeholder="Picture" class="form-control" value="<%= @sculpture.main_picture %>">
+      </div>
+
 
       <button class="btn btn-warning">
         Update Sculpture

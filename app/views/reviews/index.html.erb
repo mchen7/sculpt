@@ -23,7 +23,7 @@
         <td><%= review.sculpture_id %></td>
         <td><%= review.comment %></td>
         <td><%= review.rating %></td>
-        <td><%= review.picture %></td>
+        <td><%= truncate(review.picture) %></td>
         <td>
           <a href="/reviews/<%= review.id %>" class="btn btn-primary">Show</a>
           <a href="/reviews/<%= review.id %>/edit" class="btn btn-warning">Edit</a>

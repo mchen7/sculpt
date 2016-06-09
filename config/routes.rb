@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :views
-  devise_for :views
   # Routes for the Sculpture resource:
   # CREATE
   get "/", :controller => "sculptures", :action => "search"
@@ -39,6 +37,9 @@ Rails.application.routes.draw do
   #------------------------------
 
   devise_for :users
+  get "/users", :controller => "users", :action => "index"
+  get "/users/:id", :controller => "users", :action => "show"
+  
   root "sculptures#search"
 
   # The priority is based upon order of creation: first created -> highest priority.
